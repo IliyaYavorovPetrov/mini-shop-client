@@ -1,22 +1,23 @@
 import React, { useEffect } from "react";
-import { generateAuthToken } from "../api/auth";
+import { signUp } from "../api/auth";
+import { AuthProvider } from "../api/auth/AuthProvider";
 
-function handleCallbackResponse(response: any) {
+function handleCallbackGoogle(response: any) {
   console.log(response.credential);
-  generateAuthToken(response.credential).then((res) => {
+  signUp(response.credential, AuthProvider.GOOGLE).then((res) => {
       console.log(res);
   }).catch(error => console.log(error));
 }
 
-const Login = () => {
+const SignUp = () => {
   useEffect(() => {
     (window as any).google.accounts.id.initialize({
       client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
-      callback: handleCallbackResponse,
+      callback: handleCallbackGoogle,
     });
 
     (window as any).google.accounts.id.renderButton(
-      document.getElementById("signInGoogleButton"),
+      document.getElementById("signUpGoogleButton"),
       {
         theme: "outline",
         size: "large",
@@ -27,10 +28,10 @@ const Login = () => {
 
   return (
     <div>
-      <h1>Welcome to mini-shop</h1>
-      <div id="signInGoogleButton"></div>
+      <h1>Sign-up to mini-shop</h1>
+      <div id="signUpGoogleButton"></div>
     </div>
   );
 };
 
-export default Login;
+export default SignUp;
