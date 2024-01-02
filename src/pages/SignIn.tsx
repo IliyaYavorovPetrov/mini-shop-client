@@ -3,10 +3,7 @@ import { signIn } from "../api/auth";
 import { AuthProvider } from "../api/auth/AuthProvider";
 
 function handleCallbackGoogle(response: any) {
-  console.log(response);
-  signIn(response, AuthProvider.GOOGLE).then((res) => {
-      console.log(res);
-  }).catch(error => console.log(error));
+  signIn(response.credential, AuthProvider.GOOGLE);
 }
 
 const SignIn = () => {
