@@ -3,7 +3,7 @@ import {SignUpResponse} from "../models/SignUpResponse";
 
 export async function signUp(token: string, authProvider: string): Promise<SignUpResponse | null> {
     return fetch(
-        `${process.env.REACT_APP_API_URL}${process.env.REACT_APP_API_VERSION_PREFIX}/sign-up`,
+        `${process.env.REACT_APP_API_URL}${process.env.REACT_APP_API_BASE_PATH}/sign-up`,
         {
             method: 'POST',
             headers: {
@@ -30,7 +30,7 @@ export async function signUp(token: string, authProvider: string): Promise<SignU
 
 export async function signIn(token: string, authProvider: string): Promise<SignUpResponse | null> {
     return fetch(
-        `${process.env.REACT_APP_API_URL}${process.env.REACT_APP_API_VERSION_PREFIX}/sign-in`,
+        `${process.env.REACT_APP_API_URL}${process.env.REACT_APP_API_BASE_PATH}/sign-in`,
         {
             method: 'POST',
             headers: {
@@ -57,7 +57,7 @@ export async function signIn(token: string, authProvider: string): Promise<SignU
 
 export async function signOut(): Promise<void> {
     return fetch(
-        `${process.env.REACT_APP_API_URL}${process.env.REACT_APP_API_VERSION_PREFIX}/sign-out`,
+        `${process.env.REACT_APP_API_URL}${process.env.REACT_APP_API_BASE_PATH}/sign-out`,
         {
             method: 'POST',
             headers: {

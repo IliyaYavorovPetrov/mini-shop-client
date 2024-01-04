@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {signIn, signUp} from "../api/rest";
+import {signIn} from "../api/rest";
 import {AuthProviderTypes} from "../api/AuthProviderTypes";
 import {Link, useNavigate} from "react-router-dom";
 
@@ -24,10 +24,8 @@ const SignIn = () => {
     }, []);
 
     function handleCallbackGoogle(response: any) {
-        signIn(response.credential, AuthProviderTypes.GOOGLE).then((response) => {
-                if (response !== null) {
-                    navigate("/home");
-                }
+        signIn(response.credential, AuthProviderTypes.GOOGLE).then(() => {
+                navigate("/home");
             }
         );
     }
